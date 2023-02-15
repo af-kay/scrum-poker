@@ -2,4 +2,9 @@
   font-size: 1.1em;
   background: #e8e8e8;
   border: 2px solid black;
+
+  &.Done {
+    border: 2px solid black;
+    background: #b5ffaa;
+  }
 }

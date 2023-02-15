@@ -7,7 +7,7 @@ const tableStates = ['Draft', 'Planning', 'Voting', 'FinishedVoting', 'Closed'];
 
 export default function PokerTable() {
   const [userCount, setUsersCount] = useState(3);
-  const [tableState, setTableState] = useState('Closed');
+  const [tableState, setTableState] = useState('Voting');
 
   const addUser = () => {
     setUsersCount((count) => Math.min(maxUsers, count + 1));
