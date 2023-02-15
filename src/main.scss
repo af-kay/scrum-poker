@@ -1,6 +1,15 @@
 @import url('@fontsource/open-sans');
+@import url('flexboxgrid/css/flexboxgrid.min.css');
 
 $font-size: 16px;
+$padding: 16px;
+
+$bg-main: #4c4ad5;
+$text-main: #fff;
+
+$bg-paper: #f7f7f7;
+$text-paper: #5d5d5d;
+
 
 *,
 *::before,
@@ -12,4 +21,10 @@ $font-size: 16px;
 }
 body {
   font-family: 'Open Sans', sans-serif;
+  color: $text-paper;
+  background: $bg-paper;
+}
+
+.debug {
+  border: 1px solid red;
 }
