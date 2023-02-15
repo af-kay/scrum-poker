@@ -1,0 +1,23 @@
+@import '../../../main.scss';
+
+.AppHeader {
+  display: flex;
+  padding: $padding;
+  background: $bg-main;
+
+  & * {
+    color: $text-main;
+  }
+
+  .Items {
+    margin: 0 $padding * 4;
+    list-style: none;
+    display: inline;
+
+    & > * {
+      display: inline;
+      font-size: 0.9em;
+      padding: 0 $padding;
+    }
+  }
+}
