@@ -1,0 +1,102 @@
+$containerSize: 600px;
+
+$tableSize: 500px;
+
+$userTranslateX: 250px;
+$userSize: 100px;
+$maxUsers: 15;
+
+.Container {
+  width: $containerSize;
+  height: $containerSize;
+  padding: 50px;
+
+  .Table {
+    position: relative;
+    width: $tableSize;
+    height: $tableSize;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: 1s;
+
+    // Creating/Configuring board/tasks (stale)
+    &.Draft {
+      background: repeating-linear-gradient(
+        -60deg,
+        #555 0,
+        #555 1px,
+        transparent 1px,
+        transparent 5px
+      );
+    }
+    &.Planning {
+      background: #e0e9ff;
+    }
+    &.Voting {
+      background: rgb(170, 193, 249);
+    }
+    &.FinishedVoting {
+      background: #a8ebb9;
+      // background: rgb(0, 219, 7);
+    }
+    &.Closed {
+      border: calc($tableSize/2) solid black;
+    }
+
+    @for $usersCount from 0 to $maxUsers + 1 {
+      .Users-#{$usersCount} {
+        $rotateDegree: calc(360deg / $usersCount);
+        .UserContainer {
+          position: absolute;
+          border-radius: 50%;
+          overflow: hidden;
+
+          .PokerUser {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+
+          left: calc(50% - $userSize/2);
+          top: calc(50% - $userSize/2);
+          height: $userSize;
+          width: $userSize;
+          transition: 500ms;
+
+          &.Offline {
+            background: rgb(208, 208, 208);
+          }
+          &.Online {
+            background: rgb(255, 255, 255);
+            border: 2px solid rgb(0, 177, 0);
+          }
+          &.Voting {
+            background: rgb(253, 230, 188);
+          }
+          &.Ready {
+            background: rgb(0, 172, 0);
+          }
+
+          transform: translateX($userTranslateX);
+          @for $i from 0 to $usersCount {
+            &:nth-child(#{$i + 1}) {
+              transform: rotate($rotateDegree * $i) translateX($userTranslateX);
+
+              .PokerUser {
+                transform: rotate(360deg - ($rotateDegree * $i));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .Image {
+    border-radius: 50%;
+  }
+}
