@@ -3,11 +3,9 @@ import './PokerTable.scss';
 import { PokerUser } from './ui/PokerUser';
 
 const maxUsers = 15;
-const tableStates = ['Draft', 'Planning', 'Voting', 'FinishedVoting', 'Closed'];
 
 export default function PokerTable() {
   const [userCount, setUsersCount] = useState(3);
-  const [tableState, setTableState] = useState('Voting');
 
   const addUser = () => {
     setUsersCount((count) => Math.min(maxUsers, count + 1));
@@ -25,8 +23,20 @@ export default function PokerTable() {
       <span>
         Users: {userCount} of {maxUsers}
       </span>
-      <div className="Container">
-        <div className={`Table ${tableState}`}>
+      <div
+        className="Container"
+        onClick={(e) => {
+          e.stopPropagation();
+          removeUser();
+        }}
+      >
+        <div
+          className="Table"
+          onClick={(e) => {
+            e.stopPropagation();
+            addUser();
+          }}
+        >
           <div className={`Users-${users.length}`}>
             {users.map((id) => {
               return (
@@ -36,16 +46,6 @@ export default function PokerTable() {
               );
             })}
           </div>
-        </div>
-      </div>
-      <button onClick={addUser}>Add user</button>
-      <button onClick={removeUser}>Remove user</button>
-      <div>
-        <span>States:</span>
-        <div>
-          {tableStates.map(state => (
-            <button key={state} onClick={() => setTableState(state)}>{state}</button>
-          ))}
         </div>
       </div>
     </div>

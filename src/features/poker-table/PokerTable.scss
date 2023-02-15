@@ -10,6 +10,7 @@ $maxUsers: 15;
   width: $containerSize;
   height: $containerSize;
   padding: 50px;
+  background: rgb(255, 245, 230);
 
   .Table {
     position: relative;
@@ -17,31 +18,8 @@ $maxUsers: 15;
     height: $tableSize;
     border: 2px solid black;
     border-radius: 50%;
+    background: rgb(42, 0, 229);
     transition: 1s;
-
-    // Creating/Configuring board/tasks (stale)
-    &.Draft {
-      background: repeating-linear-gradient(
-        -60deg,
-        #555 0,
-        #555 1px,
-        transparent 1px,
-        transparent 5px
-      );
-    }
-    &.Planning {
-      background: #e0e9ff;
-    }
-    &.Voting {
-      background: rgb(170, 193, 249);
-    }
-    &.FinishedVoting {
-      background: #a8ebb9;
-      // background: rgb(0, 219, 7);
-    }
-    &.Closed {
-      border: calc($tableSize/2) solid black;
-    }
 
     @for $usersCount from 0 to $maxUsers + 1 {
       .Users-#{$usersCount} {

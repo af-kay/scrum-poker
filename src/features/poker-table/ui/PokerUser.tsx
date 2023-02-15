@@ -8,7 +8,10 @@ export function PokerUser() {
     <div
       className={`PokerUser ${isDone ? 'Done' : ''}`}
       style={{ cursor: 'pointer' }}
-      onClick={() => setDone((prev) => !prev)}
+      onClick={(e) => {
+        e.stopPropagation();
+        setDone((prev) => !prev);
+      }}
     >
       <p>User</p>
       {isDone ? <p>✔️</p> : <p>&nbsp;</p>}
